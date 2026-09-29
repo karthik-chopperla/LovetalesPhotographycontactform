@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeft, Menu } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 
 export default function Header({ currentStep, onBack, onLogoClick }) {
   const showBack = currentStep && currentStep !== 'landing';
@@ -23,9 +23,6 @@ export default function Header({ currentStep, onBack, onLogoClick }) {
       </div>
 
       <div className="header-right">
-        <button type="button" className="header-menu-btn" title="Menu">
-          <Menu size={20} />
-        </button>
       </div>
     </header>
   );

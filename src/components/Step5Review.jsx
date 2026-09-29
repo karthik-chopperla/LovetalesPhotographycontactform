@@ -104,18 +104,6 @@ Please contact me regarding my enquiry.`;
               <span className="row-key">Shoot</span>
               <span className="row-val">{getShootTypeLabel(formData.shootType)}</span>
             </div>
-            {formData.shootType === 'wedding' && (
-              <>
-                <div className="review-row">
-                  <span className="row-key">Selected Package</span>
-                  <span className="row-val">{formData.selectedPackage || 'Premium Wedding'}</span>
-                </div>
-                <div className="review-row">
-                  <span className="row-key">Package Price</span>
-                  <span className="row-val price-highlight">{formData.packagePrice || '₹3,00,000'}</span>
-                </div>
-              </>
-            )}
           </div>
         </div>
 
