@@ -225,7 +225,6 @@ Please contact me regarding my enquiry.`;
       {/* WhatsApp Sent / Phone Frame Success Modal */}
       {showSuccessModal && (
         <SuccessModal
-          formData={formData}
           onReset={handleReset}
           onReopenWhatsApp={handleReopenWhatsApp}
         />
