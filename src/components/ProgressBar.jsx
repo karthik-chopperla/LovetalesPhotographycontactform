@@ -1,15 +1,12 @@
 import React from 'react';
 import { Check } from 'lucide-react';
 
-export default function ProgressBar({ currentStep, shootType, onStepClick }) {
-  const isWedding = shootType === 'wedding';
-
+export default function ProgressBar({ currentStep, onStepClick }) {
   const stepsList = [
     { num: 1, key: 'details', label: 'Your Details' },
     { num: 2, key: 'shootType', label: 'Shoot Type' },
-    ...(isWedding ? [{ num: 3, key: 'packages', label: 'Packages' }] : []),
-    { num: isWedding ? 4 : 3, key: 'eventDetails', label: 'Event Details' },
-    { num: isWedding ? 5 : 4, key: 'review', label: 'Review' },
+    { num: 3, key: 'eventDetails', label: 'Event Details' },
+    { num: 4, key: 'review', label: 'Review' },
   ];
 
   const activeIndex = stepsList.findIndex(s => s.key === currentStep);
@@ -40,7 +37,7 @@ export default function ProgressBar({ currentStep, shootType, onStepClick }) {
                 <div className="node-circle">
                   {isCompleted ? <Check size={13} strokeWidth={3} /> : step.num}
                 </div>
-                <span className="node-label">{step.num}. {step.label}</span>
+                <span className="node-label">{step.label}</span>
               </button>
             </React.Fragment>
           );

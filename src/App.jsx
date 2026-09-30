@@ -4,7 +4,6 @@ import HeroBanner from './components/HeroBanner';
 import ProgressBar from './components/ProgressBar';
 import Step1Details from './components/Step1Details';
 import Step2ShootType from './components/Step2ShootType';
-import Step3Packages from './components/Step3Packages';
 import Step4EventDetails from './components/Step4EventDetails';
 import Step5Review from './components/Step5Review';
 import SuccessModal from './components/SuccessModal';
@@ -14,8 +13,6 @@ const INITIAL_FORM_STATE = {
   mobile: '',
   email: '',
   shootType: 'wedding',
-  selectedPackage: 'Premium Wedding',
-  packagePrice: '₹3,00,000',
   eventDate: '',
   eventDays: '1 Day',
   venueName: '',
@@ -38,7 +35,7 @@ export default function App() {
   const [currentStep, setCurrentStep] = useState(() => {
     try {
       const savedStep = sessionStorage.getItem('love_tales_enquiry_step');
-      return savedStep || 'landing';
+      return savedStep === 'packages' ? 'eventDetails' : savedStep || 'landing';
     } catch (e) {
       return 'landing';
     }
@@ -74,15 +71,6 @@ export default function App() {
   };
 
   const handleNextFromShootType = () => {
-    if (formData.shootType === 'wedding') {
-      setCurrentStep('packages');
-    } else {
-      setCurrentStep('eventDetails');
-    }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleNextFromPackages = () => {
     setCurrentStep('eventDetails');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -98,14 +86,8 @@ export default function App() {
       setCurrentStep('landing');
     } else if (currentStep === 'shootType') {
       setCurrentStep('details');
-    } else if (currentStep === 'packages') {
-      setCurrentStep('shootType');
     } else if (currentStep === 'eventDetails') {
-      if (formData.shootType === 'wedding') {
-        setCurrentStep('packages');
-      } else {
-        setCurrentStep('shootType');
-      }
+      setCurrentStep('shootType');
     } else if (currentStep === 'review') {
       setCurrentStep('eventDetails');
     } else {
@@ -175,7 +157,6 @@ Please contact me regarding my enquiry.`;
           {/* Top Numbered Step Progress Bar */}
           <ProgressBar 
             currentStep={currentStep} 
-            shootType={formData.shootType}
             onStepClick={handleEditStep}
           />
 
@@ -193,14 +174,6 @@ Please contact me regarding my enquiry.`;
               formData={formData}
               updateFormData={updateFormData}
               onNext={handleNextFromShootType}
-            />
-          )}
-
-          {currentStep === 'packages' && (
-            <Step3Packages
-              formData={formData}
-              updateFormData={updateFormData}
-              onNext={handleNextFromPackages}
             />
           )}
 
